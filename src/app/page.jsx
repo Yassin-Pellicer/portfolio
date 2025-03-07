@@ -33,7 +33,16 @@ export default function App() {
     <>
       {!heightCheck && !cardBlock && (
         <div className="absolute bottom-10 left-1/2 tracking-tight font-bold text-5xl transform -translate-x-1/2 text-white p-4 z-10">
-          <p className="font-poppins text-4xl font-bold italic">Pull Down and Let Go</p>
+          <p className="font-poppins text-2xl">pull down and let go</p>
+          <p className="font-poppins text-center text-5xl">&#8595;</p>
+        </div>
+      )}
+      {cardBlock && (
+        <div className="absolute z-50 flex flex-row-reverse">
+          <div className="justify-center flex flex-col items-center 2xl:align-center bg-transparent w-[50vw] h-[100vh]">
+            <p className="text-white text-3xl font-extrabold font-poppins">Yassin Pellicer Lamla</p>{" "}
+            <p className="text-white text-md font-light font-poppins">Software Developer</p>{" "}
+          </div>
         </div>
       )}
       <Canvas
@@ -41,14 +50,35 @@ export default function App() {
         camera={{ position: [0, 0, 12], fov: 25 }}
       >
         <ambientLight intensity={Math.PI} />
-        {/* Increase solver iterations for more stable physics */}
         <Physics
           interpolate
           gravity={[0, -40, 0]}
           timeStep={1 / 60}
           solverIterations={20}
         >
-        {!cardBlock && <Band dragged={dragged} hovered={hovered} currentHeight={currentHeight} setHeight={setHeight} drag={drag} hover={hover} />}
+          {!cardBlock && (
+            <Band
+              dragged={dragged}
+              hovered={hovered}
+              currentHeight={currentHeight}
+              setHeight={setHeight}
+              drag={drag}
+              hover={hover}
+              displacementX={0}
+            />
+          )}
+          {cardBlock && (
+            <Band
+              dragged={dragged}
+              hovered={hovered}
+              currentHeight={currentHeight}
+              setHeight={setHeight}
+              drag={drag}
+              hover={hover}
+              displacementX={2}
+              delay={2000}
+            />
+          )}
         </Physics>
         <Environment background blur={1}>
           <color attach="background" args={["#0b212a"]} />
@@ -86,7 +116,7 @@ export default function App() {
   );
 }
 
-function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, currentHeight, setHeight }) {
+function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, currentHeight, setHeight, displacementX, delay }) {
   const band = useRef(), fixed = useRef(), j1 = useRef(), j2 = useRef(), j3 = useRef(), card = useRef() // prettier-ignore
   const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3() // prettier-ignore
   // Increase damping for more stability
@@ -111,6 +141,18 @@ function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, curr
       return () => void (document.body.style.cursor = 'auto')
     }
   }, [hovered, dragged])
+
+  useEffect(() => {
+    if (delay) {
+      const timeoutId = setTimeout(() => {
+        card.current?.wakeUp();
+      }, delay);
+
+      card.current?.setNextKinematicTranslation(prevPosition);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [delay, prevPosition]);
 
   useFrame((state, delta) => {
     if (dragged) {
@@ -177,7 +219,7 @@ function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, curr
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[displacementX, 4, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
