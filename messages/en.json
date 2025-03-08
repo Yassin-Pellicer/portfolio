@@ -1,0 +1,41 @@
+{
+  "Landing": {
+    "title": "Yassin Pellicer Lamla",
+    "greeting": "Software Developer",
+    "whoami": "Who am I?",
+    "presentation": "Computer science student in his final year of undergraduate studies with experience in the technology sector across multiple departments of a software solutions company. Primarily experienced in front-end development, version control management, customer support, and online troubleshooting related to computer systems, operating systems (Linux), and testing/bugfixing."
+  },
+  "Projects": {
+    "title": "My Projects",
+    "subtitle": "A taste of what I can do",
+    "github": "Check out my GitHub profile!",
+    "pinpoint": {
+      "title": "Pinpoint",
+      "description": "Create events with checkpoints and set them on an interactive global map."
+    },
+    "compiler": {
+      "title": "Compiler of a subset of C",
+      "description": "A compiler for a subset of the C programming language.",
+      "explanation": "This was a project developed for the course of Compilers of the UPV (Universitat Politècnica de València). It was made using YACC, FLEX and BISON. All parts of the compilation process were covered. Lexic, syntactic and semantic analysis, code optimization and intermediate code generation. The output was interpreted by a VM that could execute the instructions of the intermediate code." 
+    },
+    "scraper": {
+      "title": "Wikipedia Web Scraper",
+      "description": "Scrape a web page and display its content. Search throughout the stored indexes and find specific sentences. This served as a small proof of how important is the content of a page in terms of SEO and page ranking. <br/> <br/> Web crawlers and search engines use this kind of techniques to index and rank websites. The content of a page should be relevant to the user in order to be well ranked in search engines."
+    },
+    "portfolio": {
+      "title": "This Portfolio!",
+      "description": "This portfolio website. Created with Next, React, Three.js, and taking inspiration of the vercel invitation event of the year 2024."
+    },
+    "miscellaneous": {
+      "title": "Miscellaneous small projects",
+      "description": "Other projects that I have worked on in my free time. Small generally, being most of them games. Among them, we can find classic games Brick Breaker and Snake, and a mandlebrot set simulation using native JS."
+    }
+  },
+  "Experience": {
+    "title": "My Work Experience",
+    "subtitle": "What I've done, what I'm doing, and what I strive to do",
+    "resume": "Check out my resume!",
+    "subtitle2": "Internship",
+    "subtitle3": "Volunteer"
+  }
+}

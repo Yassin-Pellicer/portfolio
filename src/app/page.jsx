@@ -5,10 +5,21 @@ import { Canvas, extend, useThree, useFrame } from '@react-three/fiber'
 import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei'
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier'
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline'
+import {useTranslations} from 'next-intl';
+import { Swiper , SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import "swiper/css/navigation";
+import "devicon/devicon.min.css"; // Import once in _app.js or component
+import Card from "../components/ui/card";
+import GithubIcon from '@mui/icons-material/GitHub';
+import UserIcon from '@mui/icons-material/Person';
+import Image from 'next/image';
+import { FitScreen } from '@mui/icons-material';
 
 extend({ MeshLineGeometry, MeshLineMaterial })
 useGLTF.preload('/assets/tag.glb')
-useTexture.preload('/assets/vercel.png')
+useTexture.preload('/assets/vercel.jpg')
 
 export default function App() {
 
@@ -17,6 +28,11 @@ export default function App() {
   const [heightCheck, setHeightCheck] = useState(false)
   const [currentHeight, setHeight] = useState(0);
   const [cardBlock, setCardBlock] = useState(false)
+  const [isXL, setIsXL] = useState(true); // Track screen size
+
+  const landing = useTranslations("Landing");
+  const projectsTranslations = useTranslations("Projects");
+  const expTranslations = useTranslations("Experience");
 
   useEffect(() => {
     setHeightCheck(true)
@@ -29,111 +45,492 @@ export default function App() {
     }
   }, [currentHeight])
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsXL(window.innerWidth >= 1280); // xl breakpoint (1280px)
+    };
+
+    checkScreenSize(); // Initial check
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const content = (
+    <>
+      <div className="flex items-center flex-col w-full bg-transparent mt-14">
+        <section className="w-3/4 flex-col">
+          <h1 className="text-white xl:text-6xl text-2xl font-extrabold font-poppins">
+            {landing("title")}
+          </h1>
+          <div className="text-white xl:text-2xl text-xl font-light font-poppins">
+            {landing("greeting")}
+          </div>
+          <div
+            className="mt-10 tracking-tighter xl:text-7xl text-4xl mb-2 font-extrabold"
+            style={{ fontFamily: '"Over the Rainbow", cursive' }}
+          >
+            {landing("whoami")}
+          </div>
+          <p className="text-white xl:text-xl text-sm font-light font-poppins">
+            {landing("presentation")}
+          </p>
+        </section>
+      </div>
+    </>
+  );
+
+  const projects = (
+    <>
+      <div className="flex items-center flex-col w-full bg-transparent mt-24">
+        <section className="w-3/4 flex-col">
+          <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+            {projectsTranslations("title")}
+          </h1>
+          <div
+            className="text-white xl:text-4xl text-2xl mt-4 font-extrabold"
+            style={{ fontFamily: '"Over the Rainbow", cursive' }}
+          >
+            {projectsTranslations("subtitle")}
+          </div>
+          <div className="flex mt-10">
+            <a
+              href="https://github.com/Yassin-Pellicer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon style={{ fontSize: 60, color: "white", fontFamily: '"Over the Rainbow", cursive', cursor: "pointer", marginRight: "10px" }} /> {projectsTranslations("github")}
+            </a>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+
+  const pinpoint = (
+    <div>
+      <div className="flex items-center h-full flex-col w-full bg-transparent mt-14 pb-8">
+        <section className="w-3/4 flex-col">
+          <div>
+            <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+              {projectsTranslations("pinpoint.title")}
+            </h1>
+          </div>
+          <div className="text-white xl:text-xl font-poppins text-1xl mt-4">
+            {projectsTranslations("pinpoint.description")}
+          </div>
+          <video
+            autoPlay
+            loop
+            muted
+            className=" rounded-2xl mt-4 mb-4 object-cover z-0"
+          >
+            <source src="/videos/ppdemo.mp4" type="video/mp4" />
+          </video>
+          <div className="flex flex-row justify-between">
+            <a
+              href="https://github.com/Yassin-Pellicer/pinpoint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon
+                style={{
+                  fontSize: 50,
+                  color: "white",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              />
+            </a>
+            <div>
+              <i className="devicon-postgresql-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-react-original text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-tailwindcss-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-typescript-original text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-nextjs-plain text-white-500 text-5xl"></i>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
+  const compiler = (
+    <div>
+      <div className="flex items-center h-full flex-col w-full bg-transparent mt-14 mb-8">
+        <section className="w-3/4 flex-col">
+          <div>
+            <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+              {projectsTranslations("compiler.title")}
+            </h1>
+          </div>
+          <div className="text-white xl:text-xl font-poppins text-1xl mt-4">
+            {projectsTranslations("compiler.description")}
+          </div>
+          <div className="text-white xl:text-xl font-poppins text-1xl mt-4 mb-4">
+            {projectsTranslations("compiler.explanation")}
+          </div>
+          <div className="flex flex-row justify-between">
+            <a
+              href="https://github.com/Yassin-Pellicer/pinpoint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon
+                style={{
+                  fontSize: 50,
+                  color: "white",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              />
+            </a>
+            <div>
+              <i className="devicon-c-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-linux-plain text-white-500 text-5xl"></i>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
+  const scraper = (
+    <div>
+      <div className="flex items-center h-full flex-col w-full bg-transparent mt-14 mb-8">
+        <section className="w-3/4 flex-col">
+          <div>
+            <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+              {projectsTranslations("scraper.title")}
+            </h1>
+          </div>
+          <div className="text-white xl:text-xl font-poppins text-1xl mt-4 mb-4">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: projectsTranslations("scraper.description"),
+              }}
+            />
+          </div>
+          <div className="flex flex-row justify-between">
+            <a
+              href="https://github.com/Yassin-Pellicer/pinpoint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon
+                style={{
+                  fontSize: 50,
+                  color: "white",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              />
+            </a>
+            <div>
+              <i className="devicon-python-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-bash-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-json-plain text-white-500 text-5xl "></i>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
+  const portfolio = (
+    <div>
+      <div className="flex items-center h-full flex-col w-full bg-transparent mt-14 mb-8">
+        <section className="w-3/4 flex-col">
+          <div>
+            <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+              {projectsTranslations("portfolio.title")}
+            </h1>
+          </div>
+          <div className="text-white xl:text-xl font-poppins text-1xl mt-4 mb-4">
+            {projectsTranslations("portfolio.description")}
+          </div>
+          <Canvas
+          style={{
+            height: "300px",
+            borderRadius: "16px",
+          }}
+          camera={{ position: [0, 0, 12], fov: 25 }}
+        >
+          <ambientLight intensity={Math.PI} />
+          <Physics
+            interpolate
+            gravity={[0, -40, 0]}
+            timeStep={1 / 60}
+            solverIterations={20}
+          >
+              <Band
+                dragged={dragged}
+                hovered={hovered}
+                currentHeight={currentHeight}
+                setHeight={setHeight}
+                drag={drag}
+                hover={hover}
+                displacementX={0}
+                displacementY={4.5}
+                displacementZ={0}
+                delay={2000}
+              />
+          </Physics>
+          <Environment background blur={1}>
+            <color attach="background" args={["#335994"]} />
+          </Environment>
+        </Canvas>
+        <div className="flex flex-row justify-between mt-4">
+            <a
+              href="https://github.com/Yassin-Pellicer/pinpoint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon
+                style={{
+                  fontSize: 50,
+                  color: "white",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              />
+            </a>
+            <div>
+              <i className="devicon-nextjs-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-react-original text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-threejs-original text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-blender-original text-white-500 text-5xl"></i>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
+  const miscellaneous = (
+    <div>
+      <div className="flex items-center h-full flex-col w-full bg-transparent mt-14 mb-8">
+        <section className="w-3/4 flex-col">
+          <div>
+            <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+              {projectsTranslations("miscellaneous.title")}
+            </h1>
+          </div>
+          <div className="text-white xl:text-xl font-poppins text-1xl mt-4 mb-4">
+            {projectsTranslations("miscellaneous.description")}
+          </div>
+          <div className="flex items-center justify-center">
+            <img
+              src="/assets/games.png"
+              alt="Games"
+              className="border-2 mt-4 w-1/2 h-auto mb-12"
+            />
+          </div>
+          <div className="flex flex-row  justify-between">
+            <a
+              href="https://github.com/Yassin-Pellicer/pinpoint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon
+                style={{
+                  fontSize: 50,
+                  color: "white",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              />
+            </a>
+            <div>
+              <i className="devicon-cplusplus-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-javascript-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-html5-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-css3-plain text-white-500 text-5xl mr-4"></i>
+              <i className="devicon-python-plain text-white-500 text-5xl"></i>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
+  const experience = (
+    <>
+      <div className="flex items-center flex-col w-full bg-transparent mt-24">
+        <section className="w-3/4 flex-col">
+          <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+            {expTranslations("title")}
+          </h1>
+          <div
+            className="text-white xl:text-4xl text-2xl mt-4 font-extrabold"
+            style={{ fontFamily: '"Over the Rainbow", cursive' }}
+          >
+            {expTranslations("subtitle")}
+          </div>
+          <div className="flex mt-10">
+            <a
+              href="https://github.com/Yassin-Pellicer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <UserIcon style={{ fontSize: 60, color: "white", fontFamily: '"Over the Rainbow", cursive', cursor: "pointer", marginRight: "10px" }} /> {expTranslations("resume")}
+            </a>
+          </div>
+        </section>
+      </div>
+    </>
+  ); 
+
   return (
     <>
       {!heightCheck && !cardBlock && (
         <div className="absolute bottom-10 left-1/2 tracking-tight font-bold text-5xl transform -translate-x-1/2 text-white p-4 z-10">
-          <p className="font-poppins text-2xl">pull down and let go</p>
+          <p className="font-poppins text-center text-2xl">
+            pull down and let go
+          </p>
           <p className="font-poppins text-center text-5xl">&#8595;</p>
         </div>
       )}
+
+      {(isXL || !cardBlock) && (
+        <Canvas
+          style={{
+            width: "100vw",
+            height: "100vh",
+          }}
+          camera={{ position: [0, 0, 12], fov: 25 }}
+        >
+          <ambientLight intensity={Math.PI} />
+          <Physics
+            interpolate
+            gravity={[0, -40, 0]}
+            timeStep={1 / 60}
+            solverIterations={20}
+          >
+            {!cardBlock && (
+              <Band
+                dragged={dragged}
+                hovered={hovered}
+                currentHeight={currentHeight}
+                setHeight={setHeight}
+                drag={drag}
+                hover={hover}
+                displacementX={0}
+                displacementY={4}
+                displacementZ={0}
+              />
+            )}
+            {cardBlock && (
+              <Band
+                dragged={dragged}
+                hovered={hovered}
+                currentHeight={currentHeight}
+                setHeight={setHeight}
+                drag={drag}
+                hover={hover}
+                displacementX={2.5}
+                displacementY={4.5}
+                displacementZ={0}
+                delay={2000}
+              />
+            )}
+          </Physics>
+          <Environment background blur={1}>
+            <color attach="background" args={["#005994"]} />
+            <Lightformer
+              intensity={2}
+              color="#FFFFFF"
+              position={[0, -1, 5]}
+              rotation={[0, 0, Math.PI / 3]}
+              scale={[100, 0.1, 1]}
+            />
+            <Lightformer
+              intensity={3}
+              color="#a9b5c7"
+              position={[-1, -1, 1]}
+              rotation={[0, 0, Math.PI / 3]}
+              scale={[100, 0.1, 1]}
+            />
+            <Lightformer
+              intensity={10}
+              color="#a9b5c7"
+              position={[1, 1, 1]}
+              rotation={[0, 0, Math.PI / 3]}
+              scale={[100, 0.1, 1]}
+            />
+            <Lightformer
+              intensity={2}
+              color="#a9b5c7"
+              position={[-10, 0, 14]}
+              rotation={[0, Math.PI / 2, Math.PI / 3]}
+              scale={[100, 10, 1]}
+            />
+          </Environment>
+        </Canvas>
+      )}
       {cardBlock && (
-        <div className="absolute z-50 flex flex-row-reverse">
-          <div className="justify-center flex flex-col items-center 2xl:align-center bg-transparent w-[50vw] h-[100vh]">
-            <p className="text-white text-3xl font-extrabold font-poppins">Yassin Pellicer Lamla</p>{" "}
-            <p className="text-white text-md font-light font-poppins">Software Developer</p>{" "}
+        <div className="overflow-x-hidden">
+          <div className="h-full justify-center top-0 items-center xl:absolute z-50 xl:w-[60vw] flex">
+            {content}
+          </div>
+          <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
+            {projects}
+          </div>
+          <div className="mt-14 mb-14">
+            <Swiper
+              spaceBetween={50}
+              slidesPerView={isXL ? 2.3 : 1.1}
+              centeredSlides={true}
+              loop={true}
+              grabCursor={true}
+              freeMode={true}
+              simulateTouch={true}
+              onSlideChange={() => console.log("slide change")}
+            >
+              <SwiperSlide>
+                <Card children={pinpoint}></Card>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Card children={compiler}></Card>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Card children={scraper}></Card>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Card children={portfolio}></Card>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Card children={miscellaneous}></Card>
+              </SwiperSlide>
+            </Swiper>
+          </div>
+          <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
+            {experience}
           </div>
         </div>
       )}
-      <Canvas
-        style={{ width: "100vw", height: "100vh" }}
-        camera={{ position: [0, 0, 12], fov: 25 }}
-      >
-        <ambientLight intensity={Math.PI} />
-        <Physics
-          interpolate
-          gravity={[0, -40, 0]}
-          timeStep={1 / 60}
-          solverIterations={20}
-        >
-          {!cardBlock && (
-            <Band
-              dragged={dragged}
-              hovered={hovered}
-              currentHeight={currentHeight}
-              setHeight={setHeight}
-              drag={drag}
-              hover={hover}
-              displacementX={0}
-            />
-          )}
-          {cardBlock && (
-            <Band
-              dragged={dragged}
-              hovered={hovered}
-              currentHeight={currentHeight}
-              setHeight={setHeight}
-              drag={drag}
-              hover={hover}
-              displacementX={2}
-              delay={2000}
-            />
-          )}
-        </Physics>
-        <Environment background blur={1}>
-          <color attach="background" args={["#0b212a"]} />
-          <Lightformer
-            intensity={2}
-            color="#a9b5c7"
-            position={[0, -1, 5]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="#a9b5c7"
-            position={[-1, -1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={10}
-            color="#a9b5c7"
-            position={[1, 1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={2}
-            color="#a9b5c7"
-            position={[-10, 0, 14]}
-            rotation={[0, Math.PI / 2, Math.PI / 3]}
-            scale={[100, 10, 1]}
-          />
-        </Environment>
-      </Canvas>
     </>
   );
 }
 
-function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, currentHeight, setHeight, displacementX, delay }) {
+function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, currentHeight, setHeight, displacementX, displacementY, displacementZ, delay }) {
   const band = useRef(), fixed = useRef(), j1 = useRef(), j2 = useRef(), j3 = useRef(), card = useRef() // prettier-ignore
   const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3() // prettier-ignore
-  // Increase damping for more stability
-  const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 3 }
+  const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 2, linearDamping: 2}
   const { nodes, materials } = useGLTF('/assets/tag.glb')
-  const texture = useTexture('/assets/vercel.png')
+  const texture = useTexture('/assets/vercel.jpg')
   const { width, height } = useThree((state) => state.size)
   const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]))
 
   const [prevPosition] = useState(new THREE.Vector3())
   const [movementFilter] = useState(new THREE.Vector3())
   
-  // Configure joints with slight dampening
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1], { damping: 10 })
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1], { damping: 10 })
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1], { damping: 10 })
-  useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.45, 0]], { damping: 5 })
+
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
+  useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.45, 0]]) // prettier-ignore
+
 
   useEffect(() => {
     if (hovered) {
@@ -156,61 +553,32 @@ function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, curr
 
   useFrame((state, delta) => {
     if (dragged) {
-      // Calculate pointer position in 3D space
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera)
       dir.copy(vec).sub(state.camera.position).normalize()
       vec.add(dir.multiplyScalar(state.camera.position.length()))
-      
-      // Apply smooth movement with filtering
-      if (!prevPosition.equals(new THREE.Vector3())) {
-        // Create a filtered position that lerps between previous and current
-        movementFilter.copy(vec).sub(dragged).sub(prevPosition);
-        // Scale the movement for smoother transition
-        movementFilter.multiplyScalar(0.92);
-        movementFilter.add(prevPosition);
-      } else {
-        movementFilter.copy(vec).sub(dragged);
-      }
-
-      // Store current position for next frame
-      prevPosition.copy(movementFilter);
-      
-      // Wake up all physics bodies
-      [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp())
-      
-      // Set the position with filtered movement
-      card.current?.setNextKinematicTranslation({ 
-        x: movementFilter.x, 
-        y: movementFilter.y, 
-        z: movementFilter.z 
-      })
-    } else {
-      // Reset previous position when not dragging
-      prevPosition.set(0, 0, 0);
+      ;[card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp())
+      card.current?.setNextKinematicTranslation({ x: vec.x - dragged.x, y: vec.y - dragged.y, z: vec.z - dragged.z })
     }
 
     setHeight(card.current?.translation().y.toFixed(2))
     
     if (fixed.current) {
-      // Apply stronger smoothing to reduce jitter
+      // Fix most of the jitter when over pulling the card
       ;[j1, j2].forEach((ref) => {
         if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation())
         const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())))
-        // Use a smaller delta multiplier for smoother interpolation
         ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)))
       })
-      
-      // Create a smooth curve for the band
+      // Calculate catmul curve
       curve.points[0].copy(j3.current.translation())
       curve.points[1].copy(j2.current.lerped)
       curve.points[2].copy(j1.current.lerped)
       curve.points[3].copy(fixed.current.translation())
       band.current.geometry.setPoints(curve.getPoints(32))
-      
-      // Add stability to card rotation with gentler correction
+      // Tilt it back towards the screen
       ang.copy(card.current.angvel())
       rot.copy(card.current.rotation())
-      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.20, z: ang.z })
+      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z })
     }
   })
 
@@ -219,7 +587,7 @@ function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, curr
 
   return (
     <>
-      <group position={[displacementX, 4, 0]}>
+      <group position={[displacementX, displacementY, displacementZ]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
@@ -270,9 +638,8 @@ function Band({ maxSpeed = 30, minSpeed = 5, dragged, hovered, drag, hover, curr
                     <meshPhysicalMaterial
                       {...child.material}
                       clearcoat={1}
-                      clearcoatRoughness={0.15}
-                      roughness={0.3}
-                      metalness={0.5}
+                      roughness={0.1}
+                      metalness={0.6}
                     />
                   </mesh>
                 );
