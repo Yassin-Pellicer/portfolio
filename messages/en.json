@@ -35,7 +35,17 @@
     "title": "My Work Experience",
     "subtitle": "What I've done, what I'm doing, and what I strive to do",
     "resume": "Check out my resume!",
-    "subtitle2": "Internship",
-    "subtitle3": "Volunteer"
+    "solverpay": {
+      "title": "Front-End Developer in a payment monitoring solution",
+      "subtitle": "F1 CONNECTING - València, Spain - (November 2024 - Present)"
+    },
+    "smartpos": {
+      "title": "Developer in a retail management solution",
+      "subtitle": "F1 CONNECTING - València, Spain - (June 2024 - November 2024)"
+    },
+    "carrefour": {
+      "title": "Technical Support Specialist in Carrefour's checkout system",
+      "subtitle": "F1 CONNECTING - València, Spain - (November 2023 - June 2024)"
+    }
   }
 }

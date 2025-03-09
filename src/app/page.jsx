@@ -97,7 +97,6 @@ export default function App() {
             <a
               href="https://github.com/Yassin-Pellicer"
               target="_blank"
-              rel="noopener noreferrer"
             >
               <GithubIcon style={{ fontSize: 60, color: "white", fontFamily: '"Over the Rainbow", cursive', cursor: "pointer", marginRight: "10px" }} /> {projectsTranslations("github")}
             </a>
@@ -136,7 +135,6 @@ export default function App() {
               <GithubIcon
                 style={{
                   fontSize: 50,
-                  color: "white",
                   cursor: "pointer",
                   marginRight: "10px",
                 }}
@@ -179,7 +177,6 @@ export default function App() {
               <GithubIcon
                 style={{
                   fontSize: 50,
-                  color: "white",
                   cursor: "pointer",
                   marginRight: "10px",
                 }}
@@ -220,7 +217,6 @@ export default function App() {
               <GithubIcon
                 style={{
                   fontSize: 50,
-                  color: "white",
                   cursor: "pointer",
                   marginRight: "10px",
                 }}
@@ -289,7 +285,6 @@ export default function App() {
               <GithubIcon
                 style={{
                   fontSize: 50,
-                  color: "white",
                   cursor: "pointer",
                   marginRight: "10px",
                 }}
@@ -316,14 +311,14 @@ export default function App() {
               {projectsTranslations("miscellaneous.title")}
             </h1>
           </div>
-          <div className="text-white xl:text-xl font-poppins text-1xl mt-4 mb-4">
+          <div className="flex flex-row items-center justify-center align-center mt-8 mb-12">
+          <div className="text-white xl:text-xl font-poppins text-1xl w-auto mr-8">
             {projectsTranslations("miscellaneous.description")}
           </div>
-          <div className="flex items-center justify-center">
             <img
               src="/assets/games.png"
               alt="Games"
-              className="border-2 mt-4 w-1/2 h-auto mb-12"
+              className="border-2 w-50 h-auto"
             />
           </div>
           <div className="flex flex-row  justify-between">
@@ -335,7 +330,6 @@ export default function App() {
               <GithubIcon
                 style={{
                   fontSize: 50,
-                  color: "white",
                   cursor: "pointer",
                   marginRight: "10px",
                 }}
@@ -356,7 +350,7 @@ export default function App() {
 
   const experience = (
     <>
-      <div className="flex items-center flex-col w-full bg-transparent mt-24">
+      <div className="flex items-center flex-col w-full bg-transparent">
         <section className="w-3/4 flex-col">
           <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
             {expTranslations("title")}
@@ -367,19 +361,40 @@ export default function App() {
           >
             {expTranslations("subtitle")}
           </div>
-          <div className="flex mt-10">
-            <a
-              href="https://github.com/Yassin-Pellicer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <UserIcon style={{ fontSize: 60, color: "white", fontFamily: '"Over the Rainbow", cursive', cursor: "pointer", marginRight: "10px" }} /> {expTranslations("resume")}
-            </a>
+          <div className="flex mt-8 ">
+          </div>
+          <div className="mt-4">
+            <div className="border-b-2 px-10 border-white pb-10 pt-12 hover:cursor-pointer hover:bg-blue-600 transition duration-300">
+              <h2 className="text-white xl:text-2xl text-xl font-extrabold font-poppins">
+                {expTranslations("solverpay.title")}
+              </h2>
+              <p className="text-white xl:text-xl text-lg font-poppins">
+                {expTranslations("solverpay.subtitle")}
+              </p>
+            </div>
+
+            <div className="border-b-2 px-10 border-white pb-10 pt-12 hover:cursor-pointer hover:bg-blue-600 transition duration-300">
+              <h2 className="text-white xl:text-2xl text-xl font-extrabold font-poppins">
+                {expTranslations("smartpos.title")}
+              </h2>
+              <p className="text-white xl:text-xl text-lg font-poppins">
+                {expTranslations("smartpos.subtitle")}
+              </p>
+            </div>
+
+            <div className="border-b-2 px-10 border-white pb-10 pt-12 hover:cursor-pointer hover:bg-blue-600 transition duration-300">
+              <h2 className="text-white xl:text-2xl text-xl font-extrabold font-poppins">
+                {expTranslations("carrefour.title")}
+              </h2>
+              <p className="text-white xl:text-xl text-lg font-poppins">
+                {expTranslations("carrefour.subtitle")}
+              </p>
+            </div>
           </div>
         </section>
       </div>
     </>
-  ); 
+  );
 
   return (
     <>
@@ -476,7 +491,7 @@ export default function App() {
           <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
             {projects}
           </div>
-          <div className="mt-14 mb-14">
+          <div className="mt-14 mb-24">
             <Swiper
               spaceBetween={50}
               slidesPerView={isXL ? 2.3 : 1.1}
@@ -504,8 +519,15 @@ export default function App() {
               </SwiperSlide>
             </Swiper>
           </div>
-          <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
-            {experience}
+          <div className="flex xl:flex-row flex-col items-center mb-24 mt-44">
+            <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
+              {experience}
+            </div>
+            <img
+              src="/assets/cv.png"
+              alt="Games"
+              className="w-1/3 xl:mt-0 mt-24"
+            />
           </div>
         </div>
       )}
