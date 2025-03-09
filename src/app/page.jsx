@@ -58,7 +58,7 @@ export default function App() {
 
   const content = (
     <>
-      <div className="flex items-center flex-col w-full bg-transparent mt-14">
+      <div className="flex items-center flex-col w-full bg-transparent">
         <section className="w-3/4 flex-col">
           <h1 className="text-white xl:text-6xl text-2xl font-extrabold font-poppins">
             {landing("title")}
@@ -491,7 +491,7 @@ export default function App() {
           <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
             {projects}
           </div>
-          <div className="mt-14 mb-24">
+          <div className="mt-24">
             <Swiper
               spaceBetween={50}
               slidesPerView={isXL ? 2.3 : 1.1}
@@ -519,14 +519,14 @@ export default function App() {
               </SwiperSlide>
             </Swiper>
           </div>
-          <div className="flex xl:flex-row flex-col items-center mb-24 mt-44">
-            <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
+          <div className="flex xl:flex-row flex-col items-center mb-44 mt-44">
+            <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] xl:mr-12 flex">
               {experience}
             </div>
             <img
               src="/assets/cv.png"
               alt="Games"
-              className="w-1/3 xl:mt-0 mt-24"
+              className="w-2/7 xl:mt-0 mt-24"
             />
           </div>
         </div>
