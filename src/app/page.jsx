@@ -67,7 +67,7 @@ export default function App() {
             {landing("greeting")}
           </div>
           <div
-            className="mt-10 tracking-tighter xl:text-7xl text-4xl mb-2 font-extrabold"
+            className="mt-10 tracking-tighter text-white xl:text-7xl text-4xl mb-2 font-extrabold"
             style={{ fontFamily: '"Over the Rainbow", cursive' }}
           >
             {landing("whoami")}
@@ -122,7 +122,7 @@ export default function App() {
             autoPlay
             loop
             muted
-            className=" rounded-2xl mt-4 mb-4 object-cover z-0"
+            className="rounded-2xl mt-4 mb-4 object-cover z-0 h-[300px]"
           >
             <source src="/videos/ppdemo.mp4" type="video/mp4" />
           </video>
@@ -397,7 +397,7 @@ export default function App() {
   );
 
   return (
-    <>
+    <div className="bg-black">
       {!heightCheck && !cardBlock && (
         <div className="absolute bottom-10 left-1/2 tracking-tight font-bold text-5xl transform -translate-x-1/2 text-white p-4 z-10">
           <p className="font-poppins text-center text-2xl">
@@ -526,12 +526,12 @@ export default function App() {
             <img
               src="/assets/cv.png"
               alt="Games"
-              className="w-2/7 xl:mt-0 mt-24"
+              className="w-2/7 rounded-3xl xl:mt-0 mt-24"
             />
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
