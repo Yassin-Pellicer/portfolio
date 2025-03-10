@@ -141,11 +141,11 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-postgresql-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-react-original text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-tailwindcss-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-typescript-original text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-nextjs-plain text-white-500 text-5xl"></i>
+              <i className="devicon-postgresql-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-react-original text-white text-5xl mr-4"></i>
+              <i className="devicon-tailwindcss-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-typescript-original text-white text-5xl mr-4"></i>
+              <i className="devicon-nextjs-plain text-white text-5xl"></i>
             </div>
           </div>
         </section>
@@ -183,8 +183,8 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-c-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-linux-plain text-white-500 text-5xl"></i>
+              <i className="devicon-c-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-linux-plain text-white text-5xl"></i>
             </div>
           </div>
         </section>
@@ -223,9 +223,9 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-python-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-bash-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-json-plain text-white-500 text-5xl "></i>
+              <i className="devicon-python-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-bash-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-json-plain text-white text-5xl "></i>
             </div>
           </div>
         </section>
@@ -291,10 +291,10 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-nextjs-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-react-original text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-threejs-original text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-blender-original text-white-500 text-5xl"></i>
+              <i className="devicon-nextjs-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-react-original text-white text-5xl mr-4"></i>
+              <i className="devicon-threejs-original text-white text-5xl mr-4"></i>
+              <i className="devicon-blender-original text-white text-5xl"></i>
             </div>
           </div>
         </section>
@@ -311,8 +311,8 @@ export default function App() {
               {projectsTranslations("miscellaneous.title")}
             </h1>
           </div>
-          <div className="flex flex-row items-center justify-center align-center mt-8 mb-12">
-          <div className="text-white xl:text-xl font-poppins text-1xl w-auto mr-8">
+          <div className="flex 2xl:flex-row flex-col items-center justify-center align-center mt-8 mb-12">
+          <div className="text-white xl:text-xl 3xl:mb-0 mb-8 font-poppins text-1xl w-auto mr-8">
             {projectsTranslations("miscellaneous.description")}
           </div>
             <img
@@ -321,7 +321,7 @@ export default function App() {
               className="border-2 w-50 h-auto"
             />
           </div>
-          <div className="flex flex-row  justify-between">
+          <div className="flex flex-row justify-between">
             <a
               href="https://github.com/Yassin-Pellicer/pinpoint"
               target="_blank"
@@ -336,11 +336,11 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-cplusplus-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-javascript-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-html5-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-css3-plain text-white-500 text-5xl mr-4"></i>
-              <i className="devicon-python-plain text-white-500 text-5xl"></i>
+              <i className="devicon-cplusplus-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-javascript-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-html5-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-css3-plain text-white text-5xl mr-4"></i>
+              <i className="devicon-python-plain text-white text-5xl"></i>
             </div>
           </div>
         </section>
@@ -397,7 +397,7 @@ export default function App() {
   );
 
   return (
-    <div className="bg-black">
+    <div className="bg-black overflow-x-hidden">
       {!heightCheck && !cardBlock && (
         <div className="absolute bottom-10 left-1/2 tracking-tight font-bold text-5xl transform -translate-x-1/2 text-white p-4 z-10">
           <p className="font-poppins text-center text-2xl">
