@@ -1,6 +1,6 @@
 const Card = ({ children }) => {
   return (
-    <div className="min-h-[625px] items-center flex justify-center rounded-3xl border border-white">
+    <div className="xl:min-h-[625px] xl:items-center flex justify-center rounded-3xl border border-white">
       {children}
     </div>
   );

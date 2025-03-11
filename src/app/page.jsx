@@ -40,6 +40,12 @@ export default function App() {
   }, [dragged])
 
   useEffect(() => {
+    if (!isXL) {
+      setCardBlock(true)
+    }
+  }, [isXL])
+
+  useEffect(() => {
     if (currentHeight > 5) {
       setCardBlock(true)
     }
@@ -60,7 +66,7 @@ export default function App() {
     <>
       <div className="flex items-center flex-col w-full bg-transparent">
         <section className="w-3/4 flex-col">
-          <h1 className="text-white xl:text-6xl text-2xl font-extrabold font-poppins">
+          <h1 className="text-white xl:text-6xl xl:mt-0 mt-20 text-4xl font-extrabold font-poppins">
             {landing("title")}
           </h1>
           <div className="text-white xl:text-2xl text-xl font-light font-poppins">
@@ -82,9 +88,9 @@ export default function App() {
 
   const projects = (
     <>
-      <div className="flex items-center flex-col w-full bg-transparent mt-24">
+      <div className="flex items-center flex-col w-full bg-transparent xl:mt-24 mt-0">
         <section className="w-3/4 flex-col">
-          <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+          <h1 className="text-white xl:text-6xl xl:mt-0 mt-20 text-4xl font-extrabold font-poppins">
             {projectsTranslations("title")}
           </h1>
           <div
@@ -93,7 +99,7 @@ export default function App() {
           >
             {projectsTranslations("subtitle")}
           </div>
-          <div className="flex mt-10">
+          <div className="flex items-center mt-10">
             <a href="https://github.com/Yassin-Pellicer" target="_blank">
               <GithubIcon
                 style={{
@@ -104,10 +110,10 @@ export default function App() {
                   marginRight: "10px",
                 }}
               />{" "}
-              <span className="text-white">
+            </a>
+            <span className="text-white">
                 {projectsTranslations("github")}
               </span>
-            </a>
           </div>
         </section>
       </div>
@@ -150,11 +156,11 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-postgresql-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-react-original text-white text-5xl mr-4"></i>
-              <i className="devicon-tailwindcss-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-typescript-original text-white text-5xl mr-4"></i>
-              <i className="devicon-nextjs-plain text-white text-5xl"></i>
+              <i className="devicon-postgresql-plain text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-react-original text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-tailwindcss-plain text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-typescript-original text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-nextjs-plain text-white sm:text-5xl text-2xl"></i>
             </div>
           </div>
         </section>
@@ -193,8 +199,8 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-c-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-linux-plain text-white text-5xl"></i>
+              <i className="devicon-c-plain text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-linux-plain text-white sm:text-5xl text-2xl"></i>
             </div>
           </div>
         </section>
@@ -234,9 +240,9 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-python-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-bash-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-json-plain text-white text-5xl "></i>
+              <i className="devicon-python-plain text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-bash-plain text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-json-plain text-white sm:text-5xl text-2xl "></i>
             </div>
           </div>
         </section>
@@ -303,10 +309,10 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-nextjs-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-react-original text-white text-5xl mr-4"></i>
-              <i className="devicon-threejs-original text-white text-5xl mr-4"></i>
-              <i className="devicon-blender-original text-white text-5xl"></i>
+              <i className="devicon-nextjs-plain text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-react-original text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-threejs-original text-white sm:text-5xl text-2xl mr-4"></i>
+              <i className="devicon-blender-original text-white sm:text-5xl text-2xl"></i>
             </div>
           </div>
         </section>
@@ -324,9 +330,9 @@ export default function App() {
             </h1>
           </div>
           <div className="flex 2xl:flex-row flex-col items-center justify-center align-center mt-8 mb-12">
-          <div className="text-white xl:text-xl 3xl:mb-0 mb-8 font-poppins text-1xl w-auto mr-8">
-            {projectsTranslations("miscellaneous.description")}
-          </div>
+            <div className="text-white xl:text-xl 3xl:mb-0 mb-8 font-poppins text-1xl w-auto sm:mr-8 mr-0">
+              {projectsTranslations("miscellaneous.description")}
+            </div>
             <img
               src="/assets/games.png"
               alt="Games"
@@ -349,11 +355,11 @@ export default function App() {
               />
             </a>
             <div>
-              <i className="devicon-cplusplus-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-javascript-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-html5-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-css3-plain text-white text-5xl mr-4"></i>
-              <i className="devicon-python-plain text-white text-5xl"></i>
+              <i className="devicon-cplusplus-plain text-white text-2xl mr-4 sm:text-5xl"></i>
+              <i className="devicon-javascript-plain text-white text-2xl mr-4 sm:text-5xl"></i>
+              <i className="devicon-html5-plain text-white text-2xl mr-4 sm:text-5xl"></i>
+              <i className="devicon-css3-plain text-white text-2xl mr-4 sm:text-5xl"></i>
+              <i className="devicon-python-plain text-white text-2xl sm:text-5xl"></i>
             </div>
           </div>
         </section>
@@ -363,9 +369,9 @@ export default function App() {
 
   const experience = (
     <>
-      <div className="flex items-center flex-col w-full bg-transparent">
+      <div className="flex items-center flex-col w-full bg-transparent sm:mt-0 mt-24">
         <section className="w-3/4 flex-col">
-          <h1 className="text-white xl:text-6xl text-xl font-extrabold font-poppins">
+          <h1 className="text-white xl:text-6xl text-5xl font-extrabold font-poppins">
             {expTranslations("title")}
           </h1>
           <div
@@ -377,7 +383,7 @@ export default function App() {
           <div className="flex mt-8 ">
           </div>
           <div className="mt-4">
-            <div className="border-b-2 px-10 border-white pb-10 pt-12 hover:cursor-pointer hover:bg-blue-600 transition duration-300">
+            <div className="border-b-2 sm:p-10 py-5 border-white  hover:cursor-pointer hover:bg-blue-600 transition duration-300">
               <h2 className="text-white xl:text-2xl text-xl font-extrabold font-poppins">
                 {expTranslations("solverpay.title")}
               </h2>
@@ -386,7 +392,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="border-b-2 px-10 border-white pb-10 pt-12 hover:cursor-pointer hover:bg-blue-600 transition duration-300">
+            <div className="border-b-2 sm:p-10 py-5 border-white hover:cursor-pointer hover:bg-blue-600 transition duration-300">
               <h2 className="text-white xl:text-2xl text-xl font-extrabold font-poppins">
                 {expTranslations("smartpos.title")}
               </h2>
@@ -395,7 +401,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="border-b-2 px-10 border-white pb-10 pt-12 hover:cursor-pointer hover:bg-blue-600 transition duration-300">
+            <div className="border-b-2 sm:p-10 py-5 border-white hover:cursor-pointer hover:bg-blue-600 transition duration-300">
               <h2 className="text-white xl:text-2xl text-xl font-extrabold font-poppins">
                 {expTranslations("carrefour.title")}
               </h2>
@@ -504,7 +510,7 @@ export default function App() {
           <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] flex">
             {projects}
           </div>
-          <div className="mt-24">
+          <div className="xl:mt-24 mt-14">
             <Swiper
               spaceBetween={50}
               slidesPerView={isXL ? 2.3 : 1.1}
@@ -532,14 +538,14 @@ export default function App() {
               </SwiperSlide>
             </Swiper>
           </div>
-          <div className="flex xl:flex-row flex-col items-center mb-44 mt-44">
+          <div className="flex xl:flex-row flex-col items-center sm:mb-44 mb-22 sm:mt-44">
             <div className="h-full justify-center top-0 items-center z-50 xl:w-[60vw] xl:mr-12 flex">
               {experience}
             </div>
             <img
               src="/assets/cv.png"
               alt="Games"
-              className="w-2/7 rounded-3xl xl:mt-0 mt-24"
+              className="sm:w-2/7 rounded-3xl w-6/7 mt-14"
             />
           </div>
         </div>
