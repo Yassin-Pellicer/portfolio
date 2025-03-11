@@ -94,11 +94,19 @@ export default function App() {
             {projectsTranslations("subtitle")}
           </div>
           <div className="flex mt-10">
-            <a
-              href="https://github.com/Yassin-Pellicer"
-              target="_blank"
-            >
-              <GithubIcon style={{ fontSize: 60, color: "white", fontFamily: '"Over the Rainbow", cursive', cursor: "pointer", marginRight: "10px" }} /> {projectsTranslations("github")}
+            <a href="https://github.com/Yassin-Pellicer" target="_blank">
+              <GithubIcon
+                style={{
+                  fontSize: 60,
+                  color: "white",
+                  fontFamily: '"Over the Rainbow", cursive',
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              />{" "}
+              <span className="text-white">
+                {projectsTranslations("github")}
+              </span>
             </a>
           </div>
         </section>
@@ -137,6 +145,7 @@ export default function App() {
                   fontSize: 50,
                   cursor: "pointer",
                   marginRight: "10px",
+                  color: "white",
                 }}
               />
             </a>
@@ -179,6 +188,7 @@ export default function App() {
                   fontSize: 50,
                   cursor: "pointer",
                   marginRight: "10px",
+                  color: "white",
                 }}
               />
             </a>
@@ -219,6 +229,7 @@ export default function App() {
                   fontSize: 50,
                   cursor: "pointer",
                   marginRight: "10px",
+                  color: "white",
                 }}
               />
             </a>
@@ -286,6 +297,7 @@ export default function App() {
                 style={{
                   fontSize: 50,
                   cursor: "pointer",
+                  color: "white",
                   marginRight: "10px",
                 }}
               />
@@ -332,6 +344,7 @@ export default function App() {
                   fontSize: 50,
                   cursor: "pointer",
                   marginRight: "10px",
+                  color: "white",
                 }}
               />
             </a>
